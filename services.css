@@ -1,0 +1,191 @@
+/* =========================================================
+   Eco Almaty — масштабируемая вёрстка (макет 1280px)
+   1rem = 16px при ширине 1280px, на 1920px 1rem = 24px и т.д.
+   ========================================================= */
+
+:root {
+  --green-900: #1f6b34;
+  --green-800: #2a7a3c;
+  --green-700: #2e8b46;
+  --green-100: #e3f1e1;
+  --text: #1c262b;
+  --muted: #7b878c;
+  --line: #e6eee6;
+  --font: "Inter", "Segoe UI", Arial, sans-serif;
+}
+
+/* Главная настройка масштаба:
+   минимум 16px (1280px), растёт вместе с шириной экрана, максимум 32px (2560px) */
+html {
+  font-size: clamp(16px, 1.25vw, 32px);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { background: #f6faf5; }
+
+body {
+  font-family: var(--font);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+svg { display: block; }
+
+.page {
+  position: relative;
+  width: 100%;
+  max-width: 160rem;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding-top: .125rem;
+  background: linear-gradient(180deg, #f3f9f2 0%, #ffffff 55%);
+  overflow: hidden;
+}
+
+/* Иконки Font Awesome: размер = font-size, цвет = color */
+.icon { font-size: 1rem; flex: none; }
+.icon--sm { font-size: .8125rem; }
+
+/* Градиентная заливка для крупных иконок */
+.feature__icon,
+.stat__icon {
+  background: linear-gradient(135deg, #6cc070 0%, #2a8043 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---------- декор ---------- */
+.deco { position: absolute; pointer-events: none; z-index: 0; }
+.deco--left-top    { left: 0;  top: 12.5rem;  width: 3.25rem;  height: 7.5rem; }
+.deco--left-bottom { left: 0;  top: 20rem;    width: 4.125rem; height: 7rem; }
+.deco--right-top   { right: 0; top: 7.375rem; width: 8.75rem;  height: 7.1875rem; z-index: 3; }
+
+/* ---------- Header ---------- */
+.header {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  height: 5rem;
+  margin: 0 .1875rem;
+  padding: 0 3.125rem 0 3.25rem;
+  background: #fff;
+  border-radius: 0 0 1.75rem 1.75rem;
+  box-shadow: 0 .375rem 1.375rem rgba(45, 110, 60, .07);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  height: 2.5rem;
+  padding-right: 2.875rem;
+  border-right: 1px solid #cdd6ce;
+}
+.logo__img { display: block; height: 2.875rem; width: auto; }
+
+.nav { display: flex; gap: 3.875rem; margin-left: 6.75rem; margin-right: auto; padding-top: .625rem; }
+.nav__link {
+  position: relative;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1c262b;
+  padding-bottom: .625rem;
+  white-space: nowrap;
+}
+.nav__link--active::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: .125rem;
+  background: var(--green-800);
+  border-radius: .125rem;
+}
+.nav__link:hover { color: var(--green-800); }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5625rem;
+  height: 2.6875rem;
+  padding: 0 1.5rem;
+  border-radius: 1.875rem;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: transform .2s, box-shadow .2s, background .2s;
+}
+.btn--primary {
+  color: #fff;
+  background: linear-gradient(135deg, #4a9e5a 0%, #2a7a3c 100%);
+  box-shadow: 0 .3125rem .875rem rgba(42, 122, 60, .28);
+}
+.btn--primary:hover { transform: translateY(-1px); }
+.btn--outline {
+  color: var(--green-800);
+  background: rgba(255,255,255,.6);
+  border: .09375rem solid var(--green-800);
+}
+.btn--outline:hover { background: var(--green-100); }
+.btn--sm { height: 2.5rem; font-size: .9375rem; padding: 0 1.375rem; }
+.btn--logout { width: 7.3125rem; padding: 0; }
+
+/* Страница «Блог руководителя» (дополняет news.css) */
+
+.blog { width: min(1100px, 92%); margin: 40px auto 80px; }
+
+.letter {
+  padding: 30px 40px;
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 8px 24px rgba(31, 122, 58, .12);
+}
+.letter h1 {
+  font-size: clamp(32px, 5vw, 52px);
+  margin-bottom: 24px;
+  color: #17612e;
+}
+.letter p { font-size: 18px; line-height: 1.7; margin-bottom: 22px; }
+.letter__lead { font-weight: 700;  }
+.letter__sign { margin-bottom: 0; }
+
+.comments { margin-top: 40px; }
+.comments h2 { font-size: 32px; margin-bottom: 20px; }
+.comments h3 { margin: 36px 0 14px; font-size: 22px; }
+
+.form { display: grid; gap: 16px; max-width: 720px; }
+.form label { display: grid; gap: 6px; font-weight: 600; }
+.form input,
+.form textarea {
+  font: inherit;
+  padding: 12px 16px;
+  border: 2px solid #d5e3d9;
+  border-radius: 14px;
+  background: #fff;
+  transition: border-color .2s, box-shadow .2s;
+}
+.form input:focus,
+.form textarea:focus {
+  outline: none;
+  border-color: #1f7a3a;
+  box-shadow: 0 0 0 4px #e3f2e4;
+}
+.form .btn { justify-self: start; border: 0; cursor: pointer; }
+
+.list { list-style: none; display: grid; gap: 14px; }
+.list li {
+  padding: 16px 20px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(31, 122, 58, .08);
+}
+.list .empty { color: #6b7a72; box-shadow: none; background: #f3f8f4; }
+.list b { color: #17612e; }
+.list time { margin-left: 10px; font-size: 13px; color: #6b7a72; }
+.list p { margin-top: 6px; white-space: pre-wrap; }
+class="letter__lead"

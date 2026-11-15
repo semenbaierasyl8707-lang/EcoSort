@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account | EcoSort AI</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .auth-container {
+            max-width: 450px;
+            margin: 70px auto;
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        }
+
+        .auth-container h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .auth-description {
+            text-align: center;
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        .auth-form input {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 16px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 15px;
+            box-sizing: border-box;
+        }
+
+        .auth-form button {
+            width: 100%;
+            padding: 14px;
+            background: #20A464;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .auth-form button:hover {
+            background: #16834F;
+        }
+
+        .auth-bottom {
+            text-align: center;
+            margin-top: 22px;
+        }
+
+        .auth-bottom a {
+    color: #20A464;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+        #registerMessage {
+            display: none;
+            margin-top: 18px;
+            text-align: center;
+            color: #26945b;
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="site-header">
+    <a class="brand" href="index.html" aria-label="EcoSort AI home">
+        <span class="brand-mark" aria-hidden="true">♻</span>
+        <span>EcoSort <b>AI</b></span>
+    </a>
+
+    <button class="menu-toggle" type="button"
+        aria-label="Open navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
+
+    <nav class="main-nav" aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="ecology.html">Ecology</a>
+        <a href="services.html">Services</a>
+        <a href="news.html">News</a>
+        <a href="about.html">About Us</a>
+        <a href="login.html">Login</a>
+    </nav>
+
+    <a class="header-link" href="scanner.html">
+        Try scanner <span>↗</span>
+    </a>
+</header>
+
+<main class="auth-container">
+    <h1>Create Account</h1>
+
+    <p class="auth-description">
+        Join EcoSort AI and make the planet greener.
+    </p>
+
+    <form class="auth-form" id="registerForm">
+
+        <input
+            type="text"
+            id="fullName"
+            placeholder="Full Name"
+            required
+        >
+
+        <input
+            type="email"
+            id="email"
+            placeholder="Email Address"
+            required
+        >
+
+        <input
+            type="password"
+            id="newPassword"
+            placeholder="Password"
+            minlength="6"
+            required
+        >
+
+        <input
+            type="password"
+            id="confirmPassword"
+            placeholder="Confirm Password"
+            minlength="6"
+            required
+        >
+
+        <button type="submit">Create Account</button>
+
+    </form>
+
+    <p id="registerMessage"></p>
+
+    <div class="auth-bottom">
+        Already have an account?
+        <a href="login.html">Sign In</a>
+    </div>
+</main>
+
+<script type="module">
+    import { auth } from "./firebase.js";
+
+    import {
+        createUserWithEmailAndPassword,
+        updateProfile
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    const registerForm = document.getElementById("registerForm");
+    const registerMessage = document.getElementById("registerMessage");
+
+    registerForm.addEventListener("submit", async function(event) {
+        event.preventDefault();
+
+        const fullName = document.getElementById("fullName").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("newPassword").value;
+        const confirmPassword = document.getElementById("confirmPassword").value;
+
+        if (password !== confirmPassword) {
+            registerMessage.textContent = "Passwords do not match!";
+            registerMessage.style.color = "red";
+            registerMessage.style.display = "block";
+            return;
+        }
+
+        try {
+            const userCredential = await createUserWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+            await updateProfile(userCredential.user, {
+                displayName: fullName
+            });
+
+            registerMessage.textContent =
+                "Account created successfully! You can now sign in.";
+
+            registerMessage.style.color = "green";
+            registerMessage.style.display = "block";
+
+        } catch (error) {
+            let message = "Registration failed. Please try again.";
+
+            if (error.code === "auth/email-already-in-use") {
+                message = "This email is already registered.";
+            } else if (error.code === "auth/invalid-email") {
+                message = "Please enter a valid email address.";
+            } else if (error.code === "auth/weak-password") {
+                message = "Password must be at least 6 characters.";
+            }
+
+            registerMessage.textContent = message;
+            registerMessage.style.color = "red";
+            registerMessage.style.display = "block";
+        }
+    });
+</script>
+
+</body>
+</html>

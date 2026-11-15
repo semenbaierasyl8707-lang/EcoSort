@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | EcoSort AI</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .login-section {
+            min-height: 75vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            background: #f3faf5;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 430px;
+            padding: 45px 35px;
+            background: white;
+            border-radius: 22px;
+            box-shadow: 0 15px 45px rgba(23,107,59,.10);
+        }
+
+        .login-card h1 {
+            color: #176b3b;
+            font-size: 34px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .login-description {
+            color: #68776f;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-input {
+            margin-bottom: 20px;
+        }
+
+        .login-input label {
+            display: block;
+            color: #176b3b;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .login-input input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #dce9df;
+            border-radius: 10px;
+            outline: none;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .login-input input:focus {
+            border-color: #159b50;
+        }
+
+        .login-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+            margin-bottom: 25px;
+            gap: 10px;
+        }
+
+        .login-options label {
+            color: #68776f;
+        }
+
+        .login-options a,
+        .register-link a {
+            color: #159b50;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .login-button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background: #159b50;
+            color: white;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .login-button:hover {
+            background: #10552f;
+        }
+
+        .register-link {
+            text-align: center;
+            margin-top: 25px;
+            color: #68776f;
+            font-size: 14px;
+        }
+
+        #loginMessage {
+            display: none;
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 9px;
+            background: #effaf3;
+            color: #176b3b;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        @media(max-width: 500px) {
+            .login-card {
+                padding: 35px 22px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="site-header">
+    <a class="brand" href="index.html">
+        <span class="brand-mark">♻</span>
+        <span>EcoSort <b>AI</b></span>
+    </a>
+
+    <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="ecology.html">Ecology</a>
+        <a href="services.html">Services</a>
+        <a href="news.html">News</a>
+        <a href="about.html">About Us</a>
+        <a class="active" href="login.html">Login</a>
+    </nav>
+
+    <a class="header-link" href="scanner.html">Try scanner ↗</a>
+</header>
+
+<main>
+    <section class="login-section">
+        <div class="login-card">
+
+            <h1>Welcome Back!</h1>
+
+            <p class="login-description">
+                Sign in to your EcoSort AI account.
+            </p>
+
+            <form id="loginForm">
+
+                <div class="login-input">
+                    <label for="username">Email Address</label>
+                    <input
+                        type="email"
+                        id="username"
+                        placeholder="Enter your email"
+                        required
+                    >
+                </div>
+
+                <div class="login-input">
+                    <label for="password">Password</label>
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Enter your password"
+                        required
+                        minlength="6"
+                    >
+                </div>
+
+                <div class="login-options">
+                    <label>
+                        <input type="checkbox">
+                        Remember me
+                    </label>
+
+                    <a href="forgot-password.html">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="login-button">
+                    Sign In
+                </button>
+
+                <div id="loginMessage"></div>
+
+            </form>
+
+            <div class="register-link">
+                Don't have an account?
+                <a href="register.html">Register</a>
+            </div>
+
+        </div>
+    </section>
+</main>
+
+<footer class="site-footer">
+    <a class="brand footer-brand" href="index.html">
+        <span class="brand-mark">♻</span>
+        <span>EcoSort <b>AI</b></span>
+    </a>
+
+    <p>Making waste sorting simpler, one scan at a time.</p>
+
+    <small>© 2026 EcoSort AI.</small>
+</footer>
+
+<script type="module" src="login.js"></script>
+
+<script type="module">
+    import { auth } from "./firebase.js";
+
+    import {
+        signInWithEmailAndPassword
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    const loginForm = document.getElementById("loginForm");
+    const loginMessage = document.getElementById("loginMessage");
+
+    loginForm.addEventListener("submit", async function(event) {
+        event.preventDefault();
+
+        const email = document.getElementById("username").value.trim();
+        const password = document.getElementById("password").value;
+
+        try {
+            const userCredential = await signInWithEmailAndPassword(
+                auth,
+                email,
+                password
+            );
+
+            loginMessage.textContent =
+                "Welcome back, " +
+                (userCredential.user.displayName || "User") +
+                "! Login successful.";
+
+            loginMessage.style.color = "#20A464";
+            loginMessage.style.display = "block";
+
+        } catch (error) {
+            loginMessage.textContent =
+                "Invalid email or password. Please try again.";
+
+            loginMessage.style.color = "red";
+            loginMessage.style.display = "block";
+        }
+    });
+</script>
+
+</body>
+</html>

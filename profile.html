@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | EcoSort AI</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .profile-section {
+            max-width: 650px;
+            margin: 80px auto;
+            padding: 20px;
+        }
+
+        .profile-card {
+            background: white;
+            padding: 45px 30px;
+            border-radius: 22px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.07);
+        }
+
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: #E5F5EC;
+            color: #20A464;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 45px;
+            margin: 0 auto 20px;
+        }
+
+        .profile-card h1 {
+            margin-bottom: 10px;
+        }
+
+        .profile-email {
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        .profile-info {
+            background: #F5FAF7;
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .profile-info p {
+            margin: 8px 0;
+        }
+
+        .logout-button {
+            background: #20A464;
+            color: white;
+            border: none;
+            padding: 14px 35px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .logout-button:hover {
+            background: #16834F;
+        }
+
+        #profileMessage {
+            margin-top: 20px;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="site-header">
+    <a class="brand" href="index.html">
+        <span class="brand-mark">♻</span>
+        <span>EcoSort <b>AI</b></span>
+    </a>
+
+    <button class="menu-toggle" type="button"
+        aria-label="Open navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
+
+    <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="ecology.html">Ecology</a>
+        <a href="services.html">Services</a>
+        <a href="news.html">News</a>
+        <a href="about.html">About Us</a>
+        <a href="scanner.html">Scanner</a>
+    </nav>
+
+    <a class="header-link" href="scanner.html">
+        Try scanner <span>↗</span>
+    </a>
+</header>
+
+<main>
+    <section class="profile-section">
+
+        <div class="profile-card">
+
+            <div class="profile-avatar">👤</div>
+
+            <h1 id="profileName">Loading...</h1>
+
+            <p class="profile-email" id="profileEmail"></p>
+
+            <div class="profile-info">
+                <p><b>Full Name:</b> <span id="userName"></span></p>
+                <p><b>Email:</b> <span id="userEmail"></span></p>
+                <p><b>Account:</b> Active</p>
+            </div>
+
+            <button class="logout-button" id="logoutButton">
+                Log Out
+            </button>
+
+            <p id="profileMessage"></p>
+
+        </div>
+
+    </section>
+</main>
+
+<footer class="site-footer">
+    <a class="brand footer-brand" href="index.html">
+        <span class="brand-mark">♻</span>
+        <span>EcoSort <b>AI</b></span>
+    </a>
+
+    <p>Making waste sorting simpler, one scan at a time.</p>
+
+    <small>© 2026 EcoSort AI.</small>
+</footer>
+
+<script src="script.js"></script>
+
+<script type="module">
+    import { auth } from "./firebase.js";
+
+    import {
+        onAuthStateChanged,
+        signOut
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    const profileName = document.getElementById("profileName");
+    const profileEmail = document.getElementById("profileEmail");
+    const userName = document.getElementById("userName");
+    const userEmail = document.getElementById("userEmail");
+    const profileMessage = document.getElementById("profileMessage");
+    const logoutButton = document.getElementById("logoutButton");
+
+    onAuthStateChanged(auth, function(user) {
+        if (user) {
+            const name = user.displayName || "User";
+
+            profileName.textContent = name;
+            profileEmail.textContent = user.email;
+            userName.textContent = name;
+            userEmail.textContent = user.email;
+        } else {
+            window.location.href = "login.html";
+        }
+    });
+
+    logoutButton.addEventListener("click", async function() {
+        try {
+            await signOut(auth);
+            window.location.href = "login.html";
+        } catch (error) {
+            profileMessage.textContent = "Unable to log out. Please try again.";
+        }
+    });
+</script>
+
+</body>
+</html>

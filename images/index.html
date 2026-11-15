@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eco Almaty</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== SVG-спрайт иконок ===== -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <linearGradient id="lg-green" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#6cc070"/>
+        <stop offset="1" stop-color="#2a8043"/>
+      </linearGradient>
+      <linearGradient id="lg-leaf-big" x1="0" y1="1" x2="1" y2="0">
+        <stop offset="0" stop-color="#2f8a43"/>
+        <stop offset="1" stop-color="#8fd27c"/>
+      </linearGradient>
+    </defs>
+
+    <symbol id="i-leaf" viewBox="0 0 24 24">
+      <path d="M21 3C11 3 4 8 4 16c0 1.6.4 3 1.100 4.200C6 15 10 11.500 15.500 10 11 12.500 8 16 7 21c.9.4 2 .6 3 .6 8 0 11-6.500 11-18.600z" fill="currentColor"/>
+    </symbol>
+
+    <symbol id="i-recycle" viewBox="0 0 48 48">
+      <g fill="none" stroke="#2f8f47" stroke-width="5" stroke-linecap="round">
+        <path d="M24 7A17 17 0 0 1 38.700 15.500"/>
+        <path d="M24 7A17 17 0 0 1 38.700 15.500" transform="rotate(120 24 24)"/>
+        <path d="M24 7A17 17 0 0 1 38.700 15.500" transform="rotate(240 24 24)"/>
+      </g>
+      <g fill="#2f8f47">
+        <path d="M44.500 12.500L41.500 25.500 31 18z"/>
+        <path d="M44.500 12.500L41.500 25.500 31 18z" transform="rotate(120 24 24)"/>
+        <path d="M44.500 12.500L41.500 25.500 31 18z" transform="rotate(240 24 24)"/>
+      </g>
+    </symbol>
+
+    <symbol id="i-pin" viewBox="0 0 48 48">
+      <path d="M24 3C15 3 8.500 9.800 8.500 18.200 8.500 29.500 24 45 24 45s15.500-15.500 15.500-26.800C39.500 9.800 33 3 24 3z" fill="url(#lg-green)"/>
+      <circle cx="24" cy="18" r="6.500" fill="#fff"/>
+    </symbol>
+
+    <symbol id="i-news" viewBox="0 0 48 48">
+      <rect x="5" y="7" width="38" height="34" rx="6" fill="url(#lg-green)"/>
+      <rect x="11" y="13" width="12" height="12" rx="2" fill="#fff"/>
+      <rect x="27" y="13" width="11" height="3.500" rx="1.700" fill="#fff"/>
+      <rect x="27" y="20" width="11" height="3.500" rx="1.700" fill="#fff"/>
+      <rect x="11" y="30" width="27" height="3.500" rx="1.700" fill="#fff"/>
+    </symbol>
+
+    <symbol id="i-sprout" viewBox="0 0 48 48">
+      <path d="M24 44V27" stroke="#3c8f4c" stroke-width="3" stroke-linecap="round"/>
+      <path d="M24 29C24 18.500 17 12 5 13c0 11 7.500 17 19 16z" fill="#58b565"/>
+      <path d="M24 25c0-9.500 6-15 18-14 0 10.500-6.500 15.500-18 14z" fill="#2c8a45"/>
+      <ellipse cx="24" cy="44.500" rx="10" ry="2.500" fill="#c8a97f" opacity=".55"/>
+    </symbol>
+
+    <symbol id="i-tree" viewBox="0 0 48 48">
+      <path d="M24 3L12.500 19h6L8 32h10.500v11h11V32H40L29.500 19h6z" fill="#2f8a43"/>
+    </symbol>
+
+    <symbol id="i-bigleaf" viewBox="0 0 48 48">
+      <path d="M43 5C22 5 6 15 6 32c0 3.500.9 6.500 2.500 9C10 29 18 21 30 18 20 23 13.500 31 11 42c2 1 4.300 1.500 6.500 1.500C36 43.500 43 29 43 5z" fill="url(#lg-green)"/>
+    </symbol>
+  </svg>
+
+  <div class="page">
+
+    <!-- декоративные листья -->
+    <svg class="deco deco--left-top" viewBox="0 0 60 130" aria-hidden="true">
+      <path d="M0 0C28 8 48 40 44 80 20 76 0 50 0 0z" fill="#dff0dc" opacity=".85"/>
+    </svg>
+    <svg class="deco deco--left-bottom" viewBox="0 0 70 120" aria-hidden="true">
+      <path d="M0 10C22 10 40 30 38 60 18 58 2 40 0 10z" fill="#cfe8cb" opacity=".9"/>
+      <path d="M0 70C32 62 64 78 70 100 40 112 8 100 0 70z" fill="#b9dcb4" opacity=".8"/>
+    </svg>
+    <svg class="deco deco--right-top" viewBox="0 0 140 115" aria-hidden="true">
+      <path d="M0 58C20 30 55 22 96 38 80 66 40 82 0 58z" fill="url(#lg-leaf-big)" opacity=".9"/>
+      <path d="M100 0C130 12 140 50 128 100 98 88 84 40 100 0z" fill="url(#lg-leaf-big)" opacity=".85"/>
+    </svg>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+      <a href="#" class="logo">
+        <img src="images/logo.svg" alt="Eco Almaty" class="logo__img">
+      </a>
+
+      <nav class="nav">
+        <a href="#" class="nav__link nav__link--active">О компании</a>
+        <a href="#" class="nav__link">Эко-монитор</a>
+        <a href="#" class="nav__link">Новости</a>
+        <a href="#" class="nav__link">Блог руководителя</a>
+      </nav>
+
+      <a href="#" class="btn btn--primary btn--logout">
+        <svg class="icon"><use href="#i-leaf"/></svg>
+        Выход
+      </a>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+      <div class="hero__blob"></div>
+
+      <div class="hero__content">
+        <span class="badge">
+          <svg class="icon icon--sm"><use href="#i-leaf"/></svg>
+          Чистый город — наше общее дело
+        </span>
+        <h1 class="hero__title">Eco <span>Almaty</span></h1>
+        <p class="hero__subtitle">Сохраняем природу города,<br>создаём зелёное будущее вместе!</p>
+        <div class="hero__buttons">
+          <a href="#" class="btn btn--primary btn--sm">
+            <svg class="icon"><use href="#i-leaf"/></svg>
+            Узнать больше
+            <span class="btn__arrow">→</span>
+          </a>
+          <a href="#" class="btn btn--outline btn--sm">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.700"><path d="M12 2.500a6.500 6.500 0 0 0-6.500 6.500c0 4.800 6.500 12 6.500 12s6.500-7.200 6.500-12A6.500 6.500 0 0 0 12 2.500z"/><circle cx="12" cy="9" r="2.300"/></svg>
+            Экокарта
+          </a>
+        </div>
+      </div>
+
+      <div class="hero__image">
+        <!-- Фото города: images/almaty.jpg -->
+        <img src="images/almaty.jpg" alt="Алматы — горы и телебашня" onerror="this.style.display='none'">
+        <div class="hero__card">
+          <svg class="hero__card-icon"><use href="#i-recycle"/></svg>
+          <span class="hero__card-text">Алматы<br>— зелёный город</span>
+          <svg class="hero__heart" viewBox="0 0 24 24" fill="none" stroke="#9aa7a0" stroke-width="1.600"><path d="M12 20.500S3.500 15 3.500 9A4.500 4.500 0 0 1 12 7a4.500 4.500 0 0 1 8.500 2c0 6-8.500 11.500-8.500 11.500z"/></svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FEATURES ===== -->
+    <section class="features">
+      <a href="#" class="feature">
+        <svg class="feature__icon"><use href="#i-sprout"/></svg>
+        <div class="feature__text">
+          <h3>Экология города</h3>
+          <p>Актуальная информация<br>о состоянии окружающей среды</p>
+        </div>
+        <span class="feature__arrow">→</span>
+      </a>
+      <a href="#" class="feature">
+        <svg class="feature__icon"><use href="#i-recycle"/></svg>
+        <div class="feature__text">
+          <h3>Сортировка отходов</h3>
+          <p>Как правильно разделить<br>мусор?</p>
+        </div>
+        <span class="feature__arrow">→</span>
+      </a>
+      <a href="#" class="feature">
+        <svg class="feature__icon"><use href="#i-pin"/></svg>
+        <div class="feature__text">
+          <h3>Эко-карта</h3>
+          <p>Пункты переработки<br>и зелёные зоны</p>
+        </div>
+        <span class="feature__arrow">→</span>
+      </a>
+      <a href="#" class="feature">
+        <svg class="feature__icon"><use href="#i-news"/></svg>
+        <div class="feature__text">
+          <h3>Эко-новости</h3>
+          <p>Последние события<br>и инициативы</p>
+        </div>
+        <span class="feature__arrow">→</span>
+      </a>
+    </section>
+
+    <!-- ===== CONTRIBUTION ===== -->
+    <section class="contribution">
+      <div class="contribution__left">
+        <h2 class="contribution__title">Наш вклад в экологию</h2>
+        <div class="stats">
+          <div class="stat">
+            <svg class="stat__icon" style="color:#3d9a4f"><use href="#i-bigleaf"/></svg>
+            <div><strong>12+ т</strong><p>Переработанного мусора</p></div>
+          </div>
+          <div class="stat">
+            <svg class="stat__icon"><use href="#i-tree"/></svg>
+            <div><strong>50+</strong><p>Посаженных деревьев</p></div>
+          </div>
+          <div class="stat">
+            <svg class="stat__icon stat__icon--lg"><use href="#i-recycle"/></svg>
+            <div><strong>3</strong><p>Эко-проекта</p></div>
+          </div>
+        </div>
+      </div>             
+
+      <div class="banner">
+        <h3 class="banner__text">Вместе<br>делаем Алматы<br>чище и зеленее!</h3>
+        <!-- Фото руки с ростком: images/sprout.png -->
+        <img src="images/sprout.png" alt="Росток в руке" class="banner__img" onerror="this.style.display='none'">
+        <a href="#" class="banner__btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#2a7a3c" stroke-width="2.200" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </section>
+
+  </div>
+</body>
+</html>

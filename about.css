@@ -1,0 +1,181 @@
+:root {
+  --green-900: #1f6b34;
+  --green-800: #2a7a3c;
+  --green-700: #2e8b46;
+  --green-100: #e3f1e1;
+  --text: #1c262b;
+  --muted: #7b878c;
+  --line: #e6eee6;
+  --font: "Inter", "Segoe UI", Arial, sans-serif;
+}
+
+/* Главная настройка масштаба:
+   минимум 16px (1280px), растёт вместе с шириной экрана, максимум 32px (2560px) */
+html {
+  font-size: clamp(16px, 1.25vw, 32px);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body { background: #f6faf5; }
+
+body {
+  font-family: var(--font);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+svg { display: block; }
+
+.page {
+  position: relative;
+  width: 100%;
+  max-width: 160rem;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding-top: .125rem;
+  background: linear-gradient(180deg, #f3f9f2 0%, #ffffff 55%);
+  overflow: hidden;
+}
+
+/* Иконки Font Awesome: размер = font-size, цвет = color */
+.icon { font-size: 1rem; flex: none; }
+.icon--sm { font-size: .8125rem; }
+
+/* Градиентная заливка для крупных иконок */
+.feature__icon,
+.stat__icon {
+  background: linear-gradient(135deg, #6cc070 0%, #2a8043 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---------- декор ---------- */
+.deco { position: absolute; pointer-events: none; z-index: 0; }
+.deco--left-top    { left: 0;  top: 12.5rem;  width: 3.25rem;  height: 7.5rem; }
+.deco--left-bottom { left: 0;  top: 20rem;    width: 4.125rem; height: 7rem; }
+.deco--right-top   { right: 0; top: 7.375rem; width: 8.75rem;  height: 7.1875rem; z-index: 3; }
+
+.header {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  height: 5rem;
+  margin: 0 .1875rem;
+  padding: 0 3.125rem 0 3.25rem;
+  background: #fff;
+  border-radius: 0 0 1.75rem 1.75rem;
+  box-shadow: 0 .375rem 1.375rem rgba(45, 110, 60, .07);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  height: 2.5rem;
+  padding-right: 2.875rem;
+  border-right: 1px solid #cdd6ce;
+}
+.logo__img { display: block; height: 2.875rem; width: auto; }
+
+.nav { display: flex; gap: 3.875rem; margin-left: 6.75rem; margin-right: auto; padding-top: .625rem; }
+.nav__link {
+  position: relative;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1c262b;
+  padding-bottom: .625rem;
+  white-space: nowrap;
+}
+.nav__link--active::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: .125rem;
+  background: var(--green-800);
+  border-radius: .125rem;
+}
+.nav__link:hover { color: var(--green-800); }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5625rem;
+  height: 2.6875rem;
+  padding: 0 1.5rem;
+  border-radius: 1.875rem;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: transform .2s, box-shadow .2s, background .2s;
+}
+.btn--primary {
+  color: #fff;
+  background: linear-gradient(135deg, #4a9e5a 0%, #2a7a3c 100%);
+  box-shadow: 0 .3125rem .875rem rgba(42, 122, 60, .28);
+}
+.btn--primary:hover { transform: translateY(-1px); }
+.btn--outline {
+  color: var(--green-800);
+  background: rgba(255,255,255,.6);
+  border: .09375rem solid var(--green-800);
+}
+.btn--outline:hover { background: var(--green-100); }
+.btn--sm { height: 2.5rem; font-size: .9375rem; padding: 0 1.375rem; }
+.btn--logout { width: 7.3125rem; padding: 0; }
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
+
+.tabs {
+  display: flex;          /* вкладки в одну строку */
+  gap: 12px;
+  margin: 30px 40px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.tab {
+  padding: 14px 20px;
+  font-size: 16px;
+  text-transform: uppercase;   /* ЗАГЛАВНЫЕ */
+  letter-spacing: 1.5px;       /* расстояние между буквами */
+  color: #777;
+  text-decoration: none;       /* убрать подчёркивание ссылки */
+  border-bottom: 3px solid transparent;
+  transition: color .2s, border-color .2s;
+}
+
+.tab:hover {
+  color: #5fcf5f;
+}
+
+.tab.active {
+  color: #5fcf5f;
+  border-bottom-color: #5fcf5f; /* зелёная линия снизу */
+}
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 40px;
+  font-size: 14px;
+  margin: 30px 40px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.item::before {
+  content: "";
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--c);
+  box-shadow: 0 0 0 4px #fff, 0 0 0 6px var(--c); /* кольцо вокруг точки */
+}

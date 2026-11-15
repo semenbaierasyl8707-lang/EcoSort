@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services | EcoSort AI</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+
+  <style>
+    .services-hero {
+      padding: 85px 8%;
+      background: linear-gradient(120deg, #effaf1, #ffffff);
+      text-align: center;
+    }
+
+    .services-hero h1 {
+      font-size: clamp(38px, 5vw, 58px);
+      color: #183b2a;
+      margin: 18px 0;
+    }
+
+    .services-hero h1 span {
+      color: #20a464;
+    }
+
+    .services-hero p {
+      max-width: 650px;
+      margin: auto;
+      color: #718078;
+      line-height: 1.8;
+    }
+
+    .services-section {
+      padding: 75px 8%;
+    }
+
+    .services-heading {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .services-heading h2 {
+      color: #183b2a;
+      font-size: 34px;
+      margin: 14px 0;
+    }
+
+    .services-heading p {
+      color: #718078;
+      line-height: 1.7;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 24px;
+    }
+
+    .service-card {
+      padding: 30px;
+      background: #fff;
+      border: 1px solid #e6eee8;
+      border-radius: 22px;
+      box-shadow: 0 8px 25px rgba(20,70,40,.05);
+      transition: .25s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(20,70,40,.10);
+    }
+
+    .service-icon {
+      width: 62px;
+      height: 62px;
+      display: grid;
+      place-items: center;
+      background: #e8f7ec;
+      border-radius: 18px;
+      font-size: 30px;
+      margin-bottom: 22px;
+    }
+
+    .service-card h3 {
+      color: #214b32;
+      margin-bottom: 12px;
+    }
+
+    .service-card p {
+      color: #718078;
+      line-height: 1.7;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .service-card a {
+      color: #20a464;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .service-banner {
+      margin: 20px 8% 75px;
+      padding: 45px;
+      background: #183b2a;
+      color: white;
+      border-radius: 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    .service-banner h2 {
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+
+    .service-banner p {
+      color: #d4e6d9;
+      line-height: 1.7;
+      max-width: 600px;
+    }
+
+    /* RECYCLING POINTS */
+.recycling-map-section {
+  padding: 75px 8%;
+  background: #f3faf4;
+}
+
+.recycling-map-box {
+  max-width: 1100px;
+  margin: 35px auto 0;
+  overflow: hidden;
+  border-radius: 22px;
+  border: 1px solid #e0ebe3;
+  box-shadow: 0 10px 30px rgba(20,70,40,.08);
+}
+
+.recycling-map-box iframe {
+  display: block;
+  width: 100%;
+  height: 420px;
+  border: 0;
+}
+
+.recycling-map-note {
+  text-align: center;
+  color: #718078;
+  margin-top: 18px;
+  line-height: 1.7;
+}
+
+@media(max-width: 650px) {
+  .recycling-map-box iframe {
+    height: 320px;
+  }
+}
+
+    .feedback-section {
+      background: #f3faf4;
+      padding: 70px 8%;
+    }
+
+    .feedback-box {
+      max-width: 650px;
+      margin: auto;
+      background: white;
+      padding: 35px;
+      border-radius: 22px;
+      box-shadow: 0 8px 25px rgba(20,70,40,.05);
+    }
+
+    .feedback-box h2 {
+      color: #183b2a;
+      margin-bottom: 12px;
+    }
+
+    .feedback-box > p {
+      color: #718078;
+      margin-bottom: 25px;
+      line-height: 1.7;
+    }
+
+    .feedback-form label {
+      display: block;
+      color: #365442;
+      font-weight: 600;
+      margin-bottom: 17px;
+    }
+
+    .feedback-form input,
+    .feedback-form textarea {
+      width: 100%;
+      padding: 14px;
+      margin-top: 8px;
+      border: 1px solid #dce8df;
+      border-radius: 10px;
+      font: inherit;
+      outline: none;
+      box-sizing: border-box;
+    }
+
+    .feedback-form input:focus,
+    .feedback-form textarea:focus {
+      border-color: #20a464;
+    }
+
+    .feedback-form button {
+      border: none;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .feedback-message {
+      margin-top: 15px;
+      color: #20a464;
+      font-weight: 600;
+      display: none;
+    }
+
+    @media(max-width: 650px) {
+      .services-section {
+        padding: 55px 6%;
+      }
+
+      .service-banner {
+        margin: 10px 6% 55px;
+        padding: 30px 22px;
+      }
+
+      .feedback-section {
+        padding: 55px 6%;
+      }
+
+      .feedback-box {
+        padding: 25px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <span class="brand-mark">♻</span>
+    <span>EcoSort <b>AI</b></span>
+  </a>
+
+  <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+
+  <nav class="main-nav" aria-label="Main navigation">
+    <a href="index.html">Home</a>
+    <a href="ecology.html">Ecology</a>
+    <a class="active" href="services.html">Services</a>
+    <a href="news.html">News</a>
+    <a href="about.html">About Us</a>
+    <a href="login.html">Login</a>
+    <a href="profile.html">My Profile</a>
+  </nav>
+
+  <a class="header-link" href="scanner.html">Try scanner <span>↗</span></a>
+</header>
+
+<main>
+
+  <section class="services-hero">
+    <span class="eyebrow">WHAT WE OFFER</span>
+    <h1>Our <span>Eco Services</span></h1>
+    <p>
+      EcoSort AI makes recycling easier through smart technology,
+      practical environmental education and simple waste management tools.
+    </p>
+  </section>
+
+  <section class="services-section">
+    <div class="services-heading">
+      <span class="eyebrow">EXPLORE OUR FEATURES</span>
+      <h2>How We Help You</h2>
+      <p>Discover tools that make responsible recycling simple.</p>
+    </div>
+
+    <div class="services-grid">
+
+      <article class="service-card">
+        <div class="service-icon">📷</div>
+        <h3>AI Material Scanner</h3>
+        <p>
+          Take a picture of an item and let artificial intelligence
+          identify its material category.
+        </p>
+        <a href="scanner.html">Try the scanner ↗</a>
+      </article>
+
+      <article class="service-card">
+        <div class="service-icon">♻️</div>
+        <h3>Waste Sorting Guide</h3>
+        <p>
+          Learn how to separate plastic, paper, glass, metal
+          and organic waste correctly.
+        </p>
+        <a href="ecology.html">Explore the guide ↗</a>
+      </article>
+
+      <article class="service-card">
+        <div class="service-icon">🌱</div>
+        <h3>Eco Education</h3>
+        <p>
+          Discover useful environmental information and
+          learn habits that help protect our planet.
+        </p>
+        <a href="ecology.html">Learn more ↗</a>
+      </article>
+
+      <article class="service-card">
+        <div class="service-icon">📰</div>
+        <h3>Environmental News</h3>
+        <p>
+          Explore environmental topics, recycling ideas
+          and updates from the world of sustainability.
+        </p>
+        <a href="news.html">Read news ↗</a>
+      </article>
+
+    </div>
+  </section>
+
+  <section class="service-banner">
+    <div>
+      <h2>Make Every Scan Count</h2>
+      <p>
+        Start using EcoSort AI to identify waste materials
+        and make smarter recycling decisions.
+      </p>
+    </div>
+    <a href="scanner.html" class="button button-primary">Open AI Scanner ↗</a>
+  </section>
+
+    <!-- RECYCLING POINTS -->
+  <section class="recycling-map-section">
+    <div class="services-heading">
+      <span class="eyebrow">FIND RECYCLING LOCATIONS</span>
+      <h2>Recycling Points in Almaty</h2>
+      <p>Explore locations where you can search for recycling and waste collection points.</p>
+    </div>
+
+    <div class="recycling-map-box">
+      <iframe
+        src="https://maps.google.com/maps?q=recycling%20points%20Almaty%20Kazakhstan&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Recycling points in Almaty map">
+      </iframe>
+    </div>
+
+    <p class="recycling-map-note">
+      Search the map for nearby recycling locations. Please check accepted materials and opening hours before visiting.
+    </p>
+  </section>
+ 
+  <section class="feedback-section">
+    <div class="feedback-box">
+      <span class="eyebrow">GET IN TOUCH</span>
+      <h2>Share Your Feedback</h2>
+      <p>
+        Have an idea or suggestion? Send us a message.
+        Your feedback helps us improve EcoSort AI.
+      </p>
+
+      <form class="feedback-form" id="feedbackForm">
+        <label>
+          Your Name
+          <input type="text" id="feedbackName" placeholder="Enter your name" maxlength="60" required>
+        </label>
+
+        <label>
+          Email Address
+          <input type="email" id="feedbackEmail" placeholder="Enter your email" required>
+        </label>
+
+        <label>
+          Your Message
+          <textarea id="feedbackText" rows="5" maxlength="1000" placeholder="Write your suggestion..." required></textarea>
+        </label>
+
+        <button type="submit" class="button button-primary">Send Message ↗</button>
+        <div class="feedback-message" id="feedbackMessage"></div>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <a class="brand footer-brand" href="index.html">
+    <span class="brand-mark">♻</span>
+    <span>EcoSort <b>AI</b></span>
+  </a>
+
+  <p>Making waste sorting simpler, one scan at a time.</p>
+
+  <div class="footer-links">
+    <a href="about.html">About the project</a>
+    <a href="ecology.html">Ecology guide</a>
+    <a href="services.html">Services</a>
+    <a href="news.html">News</a>
+    <a href="login.html">Login</a>
+  </div>
+
+  <small>© <span id="year"></span> EcoSort AI. A student project for a cleaner future.</small>
+</footer>
+
+<script>
+  const feedbackForm = document.getElementById("feedbackForm");
+
+  feedbackForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const name = document.getElementById("feedbackName").value.trim();
+    const message = document.getElementById("feedbackText").value.trim();
+    const feedbackMessage = document.getElementById("feedbackMessage");
+
+    if (!name || !message) return;
+
+    feedbackMessage.textContent = "Thank you, " + name + "! Your feedback has been received.";
+    feedbackMessage.style.display = "block";
+
+    feedbackForm.reset();
+  });
+</script>
+
+</body>
+</html>

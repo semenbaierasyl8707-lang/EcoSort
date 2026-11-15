@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ecology | EcoSort AI</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    .ecology-hero {
+      padding: 90px 8%;
+      background: linear-gradient(120deg, #effaf1, #ffffff);
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      align-items: center;
+      gap: 45px;
+    }
+
+    .ecology-hero h1 {
+      font-size: clamp(38px, 5vw, 62px);
+      line-height: 1.12;
+      color: #183b2a;
+      margin: 18px 0;
+    }
+
+    .ecology-hero h1 span {
+      color: #20a464;
+    }
+
+    .ecology-hero p {
+      color: #66756b;
+      line-height: 1.8;
+      font-size: 16px;
+      max-width: 550px;
+    }
+
+    .ecology-visual {
+      background: #dff4e4;
+      border-radius: 30px;
+      padding: 45px 25px;
+      text-align: center;
+      font-size: 100px;
+    }
+
+    .ecology-section {
+      padding: 75px 8%;
+    }
+
+    .ecology-heading {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .ecology-heading h2 {
+      color: #183b2a;
+      font-size: 34px;
+      margin-bottom: 12px;
+    }
+
+    .ecology-heading p {
+      color: #718078;
+      line-height: 1.7;
+    }
+
+    .waste-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 22px;
+    }
+
+    .waste-card {
+      background: #fff;
+      border: 1px solid #e6eee8;
+      border-radius: 20px;
+      padding: 28px 22px;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(20, 70, 40, 0.05);
+      transition: 0.25s;
+    }
+
+    .waste-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 30px rgba(20, 70, 40, 0.10);
+    }
+
+    .waste-icon {
+      font-size: 42px;
+      margin-bottom: 15px;
+    }
+
+    .waste-card h3 {
+      color: #214b32;
+      margin-bottom: 10px;
+    }
+
+    .waste-card p {
+      color: #718078;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 22px;
+    }
+
+    .step-card {
+      background: #f3faf4;
+      border-radius: 18px;
+      padding: 25px;
+    }
+
+    .step-number {
+      background: #20a464;
+      color: white;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    .step-card h3 {
+      color: #214b32;
+      margin-bottom: 10px;
+    }
+
+    .step-card p {
+      color: #718078;
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .benefits {
+      background: #eaf7ed;
+      border-radius: 25px;
+      padding: 45px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 25px;
+      text-align: center;
+    }
+
+    .benefit strong {
+      display: block;
+      color: #20a464;
+      font-size: 34px;
+      margin-bottom: 8px;
+    }
+
+    .benefit span {
+      color: #52675a;
+      font-size: 14px;
+    }
+
+    .eco-cta {
+      margin: 30px 8% 80px;
+      padding: 50px 25px;
+      border-radius: 25px;
+      background: #183b2a;
+      color: white;
+      text-align: center;
+    }
+
+    .eco-cta h2 {
+      font-size: 32px;
+      margin-bottom: 15px;
+    }
+
+    .eco-cta p {
+      color: #d4e6d9;
+      margin-bottom: 25px;
+      line-height: 1.7;
+    }
+
+    @media(max-width: 750px) {
+      .ecology-hero {
+        grid-template-columns: 1fr;
+        padding: 55px 6%;
+      }
+
+      .ecology-visual {
+        font-size: 75px;
+      }
+
+      .ecology-section {
+        padding: 55px 6%;
+      }
+
+      .benefits {
+        padding: 30px 18px;
+      }
+    }
+  </style>
+
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <span class="brand-mark">♻</span>
+    <span>EcoSort <b>AI</b></span>
+  </a>
+
+  <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+
+  <nav class="main-nav" aria-label="Main navigation">
+    <a href="index.html">Home</a>
+    <a class="active" href="ecology.html">Ecology</a>
+    <a href="services.html">Services</a>
+    <a href="news.html">News</a>
+    <a href="about.html">About Us</a>
+    <a href="login.html">Login</a>
+    <a href="profile.html">My Profile</a>
+  </nav>
+
+  <a class="header-link" href="scanner.html">Try scanner <span>↗</span></a>
+</header>
+
+<main>
+
+  <section class="ecology-hero">
+    <div>
+      <span class="eyebrow">🌱 ECOLOGY & SUSTAINABILITY</span>
+      <h1>Learn to Recycle.<br><span>Protect Our Planet.</span></h1>
+      <p>
+        Every small action makes a difference. Learn how to sort waste,
+        reduce pollution and build a cleaner, greener future with EcoSort AI.
+      </p>
+      <div class="hero-actions">
+        <a href="#categories" class="button button-primary">Explore Recycling</a>
+        <a href="scanner.html" class="button button-secondary">Start Scanning ↗</a>
+      </div>
+    </div>
+
+    <div class="ecology-visual">🌍♻️🌱</div>
+  </section>
+
+  <section class="ecology-section" id="categories">
+    <div class="ecology-heading">
+      <span class="eyebrow">WASTE CLASSIFICATION</span>
+      <h2>Know Your Waste</h2>
+      <p>Different materials need different recycling methods.</p>
+    </div>
+
+    <div class="waste-grid">
+
+  <details class="waste-card">
+    <summary>
+      <div class="waste-icon">🥤</div>
+      <h3>Plastic</h3>
+      <p>Plastic bottles and containers.</p>
+    </summary>
+    <div class="waste-details">
+      <h4>About Plastic Recycling</h4>
+      <p>Plastic is widely used in bottles, packaging and containers. Some types of plastic can be recycled into new products.</p>
+      <h4>How to recycle:</h4>
+      <p>Empty and rinse containers. Check the recycling symbol and local collection rules. Separate recyclable plastic from other waste.</p>
+      <h4>Examples:</h4>
+      <p>Water bottles, food containers, plastic packaging.</p>
+    </div>
+  </details>
+
+  <details class="waste-card">
+    <summary>
+      <div class="waste-icon">📄</div>
+      <h3>Paper</h3>
+      <p>Newspapers, cardboard and paper packaging.</p>
+    </summary>
+    <div class="waste-details">
+      <h4>About Paper Recycling</h4>
+      <p>Paper and cardboard can often be processed into new paper products, reducing the need for fresh raw materials.</p>
+      <h4>How to recycle:</h4>
+      <p>Keep paper dry and clean. Flatten cardboard boxes. Remove plastic wrapping and other non-paper materials.</p>
+      <h4>Examples:</h4>
+      <p>Newspapers, notebooks, cardboard boxes, office paper.</p>
+    </div>
+  </details>
+
+  <details class="waste-card">
+    <summary>
+      <div class="waste-icon">🍾</div>
+      <h3>Glass</h3>
+      <p>Glass bottles and jars.</p>
+    </summary>
+    <div class="waste-details">
+      <h4>About Glass Recycling</h4>
+      <p>Glass bottles and jars can be recycled into new glass products when accepted by local recycling facilities.</p>
+      <h4>How to recycle:</h4>
+      <p>Empty containers and rinse them. Separate glass from other materials. Handle broken glass carefully and follow local disposal rules.</p>
+      <h4>Examples:</h4>
+      <p>Glass bottles, jars and food containers.</p>
+    </div>
+  </details>
+
+  <details class="waste-card">
+    <summary>
+      <div class="waste-icon">🥫</div>
+      <h3>Metal</h3>
+      <p>Aluminum cans and metal packaging.</p>
+    </summary>
+    <div class="waste-details">
+      <h4>About Metal Recycling</h4>
+      <p>Metals such as aluminum and steel can be recycled and used to manufacture new products.</p>
+      <h4>How to recycle:</h4>
+      <p>Empty cans and containers. Rinse away food residue when needed. Place accepted metal items in the correct recycling bin.</p>
+      <h4>Examples:</h4>
+      <p>Aluminum cans, steel food cans and metal packaging.</p>
+    </div>
+  </details>
+
+  <details class="waste-card">
+    <summary>
+      <div class="waste-icon">🍃</div>
+      <h3>Organic</h3>
+      <p>Food scraps and natural waste.</p>
+    </summary>
+    <div class="waste-details">
+      <h4>About Organic Waste</h4>
+      <p>Organic waste comes from plants and food. Suitable organic materials can be turned into compost.</p>
+      <h4>How to recycle:</h4>
+      <p>Separate food scraps from other rubbish. Use a suitable compost bin or local organic waste collection service.</p>
+      <h4>Examples:</h4>
+      <p>Fruit peels, vegetable scraps, leaves and coffee grounds.</p>
+    </div>
+  </details>
+
+</div>
+</section>
+
+<section class="ecology-section">
+    <div class="ecology-heading">
+      <span class="eyebrow">WHY IT MATTERS</span>
+      <h2>Benefits of Recycling</h2>
+      <p>Responsible waste management helps protect our environment.</p>
+    </div>
+
+    <div class="benefits">
+      <div class="benefit">
+        <strong>🌳</strong>
+        <span>Helps conserve natural resources</span>
+      </div>
+
+      <div class="benefit">
+        <strong>💧</strong>
+        <span>Supports cleaner water and soil</span>
+      </div>
+
+      <div class="benefit">
+        <strong>⚡</strong>
+        <span>Can reduce energy use in production</span>
+      </div>
+
+      <div class="benefit">
+        <strong>🌍</strong>
+        <span>Reduces waste sent to landfills</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- DID YOU KNOW -->
+  <section class="ecology-section">
+    <div class="ecology-heading">
+      <span class="eyebrow">ECO FACTS</span>
+      <h2>Did You Know?</h2>
+      <p>Discover interesting facts about recycling and our planet.</p>
+    </div>
+
+    <div class="benefits">
+      <div class="benefit">
+        <strong>♻️</strong>
+        <span>Many materials, such as glass and aluminum, can be recycled repeatedly.</span>
+      </div>
+
+      <div class="benefit">
+        <strong>🌳</strong>
+        <span>Recycling paper helps reduce the demand for new raw materials.</span>
+      </div>
+
+      <div class="benefit">
+        <strong>🌍</strong>
+        <span>Sorting waste correctly helps reduce the amount sent to landfills.</span>
+      </div>
+
+      <div class="benefit">
+        <strong>🍃</strong>
+        <span>Organic waste can be turned into nutrient-rich compost.</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="eco-cta">
+    <h2>Give Every Item a Second Life</h2>
+    <p>Not sure what material an item is made of?<br>Use EcoSort AI to identify it with your camera.</p>
+    <a href="scanner.html" class="button button-primary">Try AI Scanner ↗</a>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <a class="brand footer-brand" href="index.html">
+    <span class="brand-mark">♻</span>
+    <span>EcoSort <b>AI</b></span>
+  </a>
+
+  <p>Making waste sorting simpler, one scan at a time.</p>
+
+  <div class="footer-links">
+    <a href="about.html">About the project</a>
+    <a href="ecology.html">Ecology guide</a>
+    <a href="services.html">Services</a>
+    <a href="news.html">News</a>
+    <a href="login.html">Login</a>
+  </div>
+
+  <small>© <span id="year"></span> EcoSort AI. A student project for a cleaner future.</small>
+</footer>
+
+</body>
+</html>

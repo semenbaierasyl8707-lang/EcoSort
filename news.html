@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eco News | EcoSort AI</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+
+  <style>
+    .news-hero {
+      padding: 75px 8%;
+      background: linear-gradient(120deg, #effaf1, #ffffff);
+      text-align: center;
+    }
+
+    .news-hero h1 {
+      font-size: clamp(38px, 5vw, 60px);
+      color: #183b2a;
+      margin: 18px 0;
+    }
+
+    .news-hero h1 span {
+      color: #20a464;
+    }
+
+    .news-hero p {
+      max-width: 650px;
+      margin: auto;
+      color: #718078;
+      line-height: 1.8;
+    }
+
+    .news-controls {
+      padding: 35px 8% 15px;
+    }
+
+    .news-search {
+      display: block;
+      width: 100%;
+      max-width: 550px;
+      margin: 0 auto 25px;
+      padding: 15px 20px;
+      border: 1px solid #dce8df;
+      border-radius: 14px;
+      font: inherit;
+      outline: none;
+      box-sizing: border-box;
+    }
+
+    .news-search:focus {
+      border-color: #20a464;
+    }
+
+    .news-chips {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .news-chip {
+      border: 1px solid #dce8df;
+      background: white;
+      color: #52675a;
+      padding: 11px 19px;
+      border-radius: 30px;
+      cursor: pointer;
+      font: inherit;
+      transition: .2s;
+    }
+
+    .news-chip:hover,
+    .news-chip.active {
+      background: #20a464;
+      border-color: #20a464;
+      color: white;
+    }
+
+    .news-section {
+      padding: 40px 8% 80px;
+    }
+
+    .news-heading {
+      margin-bottom: 30px;
+    }
+
+    .news-heading h2 {
+      font-size: 30px;
+      color: #183b2a;
+      margin: 12px 0;
+    }
+
+    .featured-news {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      overflow: hidden;
+      background: #f0f8f1;
+      border-radius: 25px;
+      margin-bottom: 35px;
+      border: 1px solid #e5eee7;
+    }
+
+    .featured-visual {
+      min-height: 300px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #d8f0dd, #a9dcb5);
+      font-size: 100px;
+    }
+
+    .featured-content {
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    .news-tag {
+      display: inline-block;
+      background: #e2f5e7;
+      color: #16834f;
+      padding: 7px 13px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 15px;
+    }
+
+    .featured-content h2 {
+      color: #183b2a;
+      font-size: 27px;
+      line-height: 1.3;
+      margin-bottom: 15px;
+    }
+
+    .featured-content p {
+      color: #718078;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .read-button {
+      border: none;
+      background: #20a464;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 600;
+      text-decoration: none;
+      transition: .2s;
+    }
+
+    .read-button:hover {
+      background: #16834f;
+    }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 23px;
+    }
+
+    .news-card {
+      border: 1px solid #e6eee8;
+      border-radius: 20px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 8px 25px rgba(20,70,40,.04);
+      transition: .25s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .news-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 28px rgba(20,70,40,.09);
+    }
+
+    .news-card-visual {
+      min-height: 155px;
+      display: grid;
+      place-items: center;
+      background: #eaf7ed;
+      font-size: 65px;
+    }
+
+    .news-card-content {
+      padding: 23px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      align-items: flex-start;
+    }
+
+    .news-card-content h3 {
+      color: #214b32;
+      font-size: 18px;
+      line-height: 1.4;
+      margin-bottom: 12px;
+    }
+
+    .news-card-content p {
+      color: #718078;
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 20px;
+      flex: 1;
+    }
+
+    .news-card-content .read-button {
+      margin-top: auto;
+    }
+
+    .news-date {
+      color: #91a096;
+      font-size: 12px;
+      margin-bottom: 12px;
+    }
+
+    .no-results {
+      display: none;
+      text-align: center;
+      padding: 45px 15px;
+      color: #718078;
+      background: #f3faf4;
+      border-radius: 18px;
+    }
+
+    .article-modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      background: rgba(10,30,18,.65);
+      padding: 20px;
+      overflow-y: auto;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .article-modal.open {
+      display: flex;
+    }
+
+    .modal-content {
+      background: white;
+      width: 100%;
+      max-width: 650px;
+      padding: 35px;
+      border-radius: 22px;
+      position: relative;
+      max-height: 85vh;
+      overflow-y: auto;
+    }
+
+    .modal-content h2 {
+      color: #183b2a;
+      margin: 15px 0;
+      line-height: 1.4;
+    }
+
+    .modal-content p {
+      color: #64756a;
+      line-height: 1.8;
+      margin-top: 15px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 15px;
+      right: 18px;
+      border: none;
+      background: #eaf7ed;
+      color: #214b32;
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    @media(max-width: 850px) {
+      .news-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .featured-news {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media(max-width: 580px) {
+      .news-controls,
+      .news-section {
+        padding-left: 6%;
+        padding-right: 6%;
+      }
+
+      .news-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-content {
+        padding: 27px;
+      }
+
+      .modal-content {
+        padding: 28px 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <a class="brand" href="index.html">
+    <span class="brand-mark">♻</span>
+    <span>EcoSort <b>AI</b></span>
+  </a>
+
+  <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+
+  <nav class="main-nav" aria-label="Main navigation">
+    <a href="index.html">Home</a>
+    <a href="ecology.html">Ecology</a>
+    <a href="services.html">Services</a>
+    <a class="active" href="news.html">News</a>
+    <a href="about.html">About Us</a>
+    <a href="login.html">Login</a>
+    <a href="profile.html">My Profile</a>
+  </nav>
+
+  <a class="header-link" href="scanner.html">Try scanner <span>↗</span></a>
+</header>
+
+<main>
+
+  <section class="news-hero">
+    <span class="eyebrow">🌍 ECO NEWS & UPDATES</span>
+    <h1>Latest <span>Eco News</span></h1>
+    <p>
+      Explore environmental topics, discover recycling ideas
+      and learn how small actions can create a cleaner future.
+    </p>
+  </section>
+
+  <section class="news-controls">
+    <input
+      type="search"
+      class="news-search"
+      id="newsSearch"
+      placeholder="🔎 Search environmental articles..."
+      aria-label="Search news"
+    >
+
+    <div class="news-chips">
+      <button class="news-chip active" data-category="all">All News</button>
+      <button class="news-chip" data-category="eco">🌱 Ecology</button>
+      <button class="news-chip" data-category="recycling">♻️ Recycling</button>
+      <button class="news-chip" data-category="technology">🤖 Technology</button>
+      <button class="news-chip" data-category="lifestyle">🌍 Eco Lifestyle</button>
+    </div>
+  </section>
+
+  <section class="news-section">
+
+    <div class="news-heading">
+      <span class="eyebrow">FEATURED ARTICLE</span>
+      <h2>Stories for a Greener Planet</h2>
+    </div>
+
+    <article class="featured-news">
+      <div class="featured-visual">🌍♻️</div>
+
+      <div class="featured-content">
+        <span class="news-tag">ECOLOGY</span>
+        <h2>Small Actions, Big Impact: Building a Sustainable Future</h2>
+        <p>
+          A cleaner planet begins with everyday choices.
+          Discover how waste reduction, responsible consumption
+          and recycling can make a positive difference.
+        </p>
+        <button class="read-button" data-article="0">Read Full Article ↗</button>
+      </div>
+    </article>
+
+    <div class="news-heading">
+      <span class="eyebrow">EXPLORE & LEARN</span>
+      <h2>Latest Articles</h2>
+    </div>
+
+    <div class="news-grid" id="newsGrid">
+
+      <article class="news-card" data-category="recycling">
+        <div class="news-card-visual">♻️</div>
+        <div class="news-card-content">
+          <span class="news-tag">RECYCLING</span>
+          <span class="news-date">Eco Education</span>
+          <h3>Why Waste Sorting Matters</h3>
+          <p>Learn why separating different materials is an important step toward responsible waste management.</p>
+          <button class="read-button" data-article="1">Read More ↗</button>
+        </div>
+      </article>
+
+      <article class="news-card" data-category="eco">
+        <div class="news-card-visual">🌳</div>
+        <div class="news-card-content">
+          <span class="news-tag">ECOLOGY</span>
+          <span class="news-date">Environment</span>
+          <h3>Protecting Urban Green Spaces</h3>
+          <p>Green spaces support urban nature and make cities more comfortable for people.</p>
+          <button class="read-button" data-article="2">Read More ↗</button>
+        </div>
+      </article>
+
+      <article class="news-card" data-category="technology">
+        <div class="news-card-visual">🤖</div>
+        <div class="news-card-content">
+          <span class="news-tag">TECHNOLOGY</span>
+          <span class="news-date">AI Innovation</span>
+          <h3>How AI Can Help Recycling</h3>
+          <p>Artificial intelligence can help identify materials and support smarter waste sorting.</p>
+          <button class="read-button" data-article="3">Read More ↗</button>
+        </div>
+      </article>
+
+      <article class="news-card" data-category="lifestyle">
+        <div class="news-card-visual">🌿</div>
+        <div class="news-card-content">
+          <span class="news-tag">ECO LIFESTYLE</span>
+          <span class="news-date">Daily Habits</span>
+          <h3>5 Simple Ways to Reduce Waste</h3>
+          <p>Explore practical habits such as reusable bags, bottles and thoughtful shopping.</p>
+          <button class="read-button" data-article="4">Read More ↗</button>
+        </div>
+      </article>
+
+      <article class="news-card" data-category="recycling">
+        <div class="news-card-visual">📦</div>
+        <div class="news-card-content">
+          <span class="news-tag">RECYCLING</span>
+          <span class="news-date">Materials Guide</span>
+          <h3>Understanding Plastic Recycling</h3>
+          <p>Not all plastics are the same. Learn why checking local recycling rules is important.</p>
+          <button class="read-button" data-article="5">Read More ↗</button>
+        </div>
+      </article>
+
+      <article class="news-card" data-category="eco">
+        <div class="news-card-visual">💧</div>
+        <div class="news-card-content">
+          <span class="news-tag">ECOLOGY</span>
+          <span class="news-date">Natural Resources</span>
+          <h3>Why Saving Water Matters</h3>
+          <p>Discover simple ways to use water responsibly at home and in everyday life.</p>
+          <button class="read-button" data-article="6">Read More ↗</button>
+        </div>
+      </article>
+
+    </div>
+
+    <div class="no-results" id="noResults">
+      <h3>No articles found 🔎</h3>
+      <p>Try another search term or select a different category.</p>
+    </div>
+
+  </section>
+
+  <section class="eco-cta" style="margin: 0 8% 75px; padding: 45px 25px; background: #183b2a; color: white; text-align: center; border-radius: 25px;">
+    <h2 style="margin-bottom: 15px;">Be Part of the Change</h2>
+    <p style="color: #d4e6d9; line-height: 1.8; margin-bottom: 22px;">
+      Start sorting waste and make your everyday actions more sustainable.
+    </p>
+    <a href="scanner.html" class="button button-primary">Try AI Scanner ↗</a>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <a class="brand footer-brand" href="index.html">
+    <span class="brand-mark">♻</span>
+    <span>EcoSort <b>AI</b></span>
+  </a>
+
+  <p>Making waste sorting simpler, one scan at a time.</p>
+
+  <div class="footer-links">
+    <a href="about.html">About the project</a>
+    <a href="ecology.html">Ecology guide</a>
+    <a href="services.html">Services</a>
+    <a href="news.html">News</a>
+    <a href="login.html">Login</a>
+  </div>
+
+  <small>© <span id="year"></span> EcoSort AI. A student project for a cleaner future.</small>
+</footer>
+
+<div class="article-modal" id="articleModal">
+  <div class="modal-content">
+    <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+    <span class="news-tag" id="modalCategory"></span>
+    <h2 id="modalTitle"></h2>
+    <p id="modalText"></p>
+  </div>
+</div>
+
+<script>
+  const articles = [
+    {
+      category: "ECOLOGY",
+      title: "Small Actions, Big Impact: Building a Sustainable Future",
+      text: "A sustainable future begins with everyday decisions. Choosing reusable products, reducing unnecessary packaging, sorting waste and using resources responsibly are simple ways to support the environment. Individual actions become more meaningful when communities work together. EcoSort AI encourages everyone to make recycling easier and more accessible."
+    },
+    {
+      category: "RECYCLING",
+      title: "Why Waste Sorting Matters",
+      text: "Waste sorting helps separate materials that may be suitable for recycling. Paper, glass, metal, plastic and organic waste often require different collection methods. Correct sorting can improve the quality of recyclable materials and reduce the amount of waste sent to landfills. Always check the rules of your local recycling service."
+    },
+    {
+      category: "ECOLOGY",
+      title: "Protecting Urban Green Spaces",
+      text: "Parks, gardens and trees are valuable parts of urban environments. They provide habitats for wildlife, offer shade and create places for people to relax. Communities can help protect green spaces by avoiding littering, caring for plants and supporting local environmental initiatives."
+    },
+    {
+      category: "TECHNOLOGY",
+      title: "How AI Can Help Recycling",
+      text: "Artificial intelligence can support waste identification by analyzing images and recognizing material patterns. AI-powered tools can help users understand whether an item may belong to plastic, paper, glass, metal or organic categories. EcoSort AI demonstrates how technology can make waste sorting more accessible. Its predictions should still be checked against local recycling rules."
+    },
+    {
+      category: "ECO LIFESTYLE",
+      title: "5 Simple Ways to Reduce Waste",
+      text: "You can reduce everyday waste by carrying a reusable shopping bag, using a refillable water bottle, choosing products with less packaging, repairing items when possible and sorting recyclable materials. Small practical habits can help reduce unnecessary waste over time."
+    },
+    {
+      category: "RECYCLING",
+      title: "Understanding Plastic Recycling",
+      text: "Plastic products are made from different materials, and not every type is accepted by every recycling program. Check packaging labels and local collection guidelines before placing plastic items in recycling bins. Empty and clean containers when required by your local service."
+    },
+    {
+      category: "ECOLOGY",
+      title: "Why Saving Water Matters",
+      text: "Fresh water is an important natural resource. Turning off taps when they are not needed, fixing leaks and using water carefully in daily activities can help avoid waste. Responsible water use is one way households can support environmental sustainability."
+    }
+  ];
+
+  const searchInput = document.getElementById("newsSearch");
+  const chips = document.querySelectorAll(".news-chip");
+  const cards = document.querySelectorAll(".news-card");
+  const noResults = document.getElementById("noResults");
+
+  let activeCategory = "all";
+
+  function filterNews() {
+    const query = searchInput.value.toLowerCase().trim();
+    let visibleCount = 0;
+
+    cards.forEach(card => {
+      const category = card.dataset.category;
+      const text = card.textContent.toLowerCase();
+
+      const categoryMatch =
+        activeCategory === "all" || category === activeCategory;
+
+      const searchMatch = text.includes(query);
+      const visible = categoryMatch && searchMatch;
+
+      card.style.display = visible ? "flex" : "none";
+
+      if (visible) visibleCount++;
+    });
+
+    noResults.style.display = visibleCount === 0 ? "block" : "none";
+  }
+
+  chips.forEach(chip => {
+    chip.addEventListener("click", () => {
+      chips.forEach(item => item.classList.remove("active"));
+      chip.classList.add("active");
+
+      activeCategory = chip.dataset.category;
+      filterNews();
+    });
+  });
+
+  searchInput.addEventListener("input", filterNews);
+
+  const modal = document.getElementById("articleModal");
+  const modalTitle = document.getElementById("modalTitle");
+  const modalText = document.getElementById("modalText");
+  const modalCategory = document.getElementById("modalCategory");
+
+  document.querySelectorAll("[data-article]").forEach(button => {
+    button.addEventListener("click", () => {
+      const article = articles[Number(button.dataset.article)];
+
+      modalTitle.textContent = article.title;
+      modalText.textContent = article.text;
+      modalCategory.textContent = article.category;
+
+      modal.classList.add("open");
+      document.body.style.overflow = "hidden";
+    });
+  });
+
+  function closeModal() {
+    modal.classList.remove("open");
+    document.body.style.overflow = "";
+  }
+
+  document.getElementById("modalClose").addEventListener("click", closeModal);
+
+  modal.addEventListener("click", event => {
+    if (event.target === modal) closeModal();
+  });
+
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape") closeModal();
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+/* Страницы входа и регистрации (дополняет news.css) */
+.auth { display: grid; place-items: center; padding: 50px 16px 80px; }
+
+.auth__card {
+  width: min(460px, 100%);
+  padding: 36px 34px;
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 8px 30px rgba(31, 122, 58, .15);
+}
+.auth__card h1 { font-size: 32px; color: #17612e; margin-bottom: 6px; }
+.auth__hint { color: #6b7a72; margin-bottom: 22px; }
+
+.auth__form { display: grid; gap: 16px; }
+.auth__form label { display: grid; gap: 6px; font-weight: 600; }
+.auth__form input {
+  font: inherit; padding: 12px 16px;
+  border: 2px solid #d5e3d9; border-radius: 14px;
+  transition: border-color .2s, box-shadow .2s;
+}
+.auth__form input:focus { outline: none; border-color: #1f7a3a; box-shadow: 0 0 0 4px #e3f2e4; }
+.auth__form input.bad  { border-color: #d9534f; }
+.auth__form .btn { justify-content: center; border: 0; cursor: pointer; padding: 14px; }
+
+.auth__msg { min-height: 22px; font-size: 14px; color: #c0392b; }
+.auth__msg.ok { color: #1f7a3a; }
+.auth__alt { margin-top: 18px; text-align: center; color: #6b7a72; }
+.auth__alt a { color: #1f7a3a; font-weight: 700; }

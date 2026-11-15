@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Scanner | EcoSort AI</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .scanner-section {
+            min-height: 75vh;
+            padding: 70px 20px;
+            background: #f3faf5;
+        }
+
+        .scanner-container {
+            max-width: 850px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .scanner-container h1 {
+            font-size: 42px;
+            color: #176b3b;
+            margin-bottom: 15px;
+        }
+
+        .scanner-container > p {
+            color: #68776f;
+            margin-bottom: 35px;
+            line-height: 1.7;
+        }
+
+        .upload-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 750px;
+    min-height: 250px;
+    margin: 0 auto;
+    background: white;
+    border: 2px dashed #159b50;
+    border-radius: 18px;
+    padding: 40px 20px;
+    cursor: pointer;
+    transition: .3s;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.upload-box:hover {
+    background: #effaf3;
+}
+
+.preview {
+    display: none;
+    width: auto;
+    max-width: 100%;
+    max-height: 300px;
+    margin: 25px auto 0;
+    border-radius: 14px;
+    object-fit: contain;
+}
+
+        #imageInput {
+            display: none;
+        }
+
+        .preview {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 14px;
+            margin-top: 25px;
+            display: none;
+            object-fit: contain;
+        }
+
+        .scanner-button {
+            margin-top: 25px;
+            padding: 16px 35px;
+            border: none;
+            border-radius: 9px;
+            background: #159b50;
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .scanner-button:hover {
+            background: #10552f;
+            transform: translateY(-2px);
+        }
+
+        .scanner-button:disabled {
+            opacity: .5;
+            cursor: not-allowed;
+        }
+
+        .result-box {
+            display: none;
+            margin-top: 35px;
+            padding: 30px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 35px #176b3b12;
+            text-align: left;
+        }
+
+        .result-box h2 {
+            color: #176b3b;
+            margin-bottom: 20px;
+        }
+
+        .result-category {
+            font-size: 25px;
+            font-weight: 800;
+            color: #159b50;
+            margin-bottom: 12px;
+        }
+
+        .result-box p {
+            color: #68776f;
+            line-height: 1.8;
+        }
+
+        .result-tip {
+            margin-top: 20px;
+            padding: 17px;
+            background: #effaf3;
+            border-radius: 10px;
+            color: #176b3b;
+            line-height: 1.7;
+        }
+
+        /* AI CONFIDENCE */
+.confidence-section {
+    margin: 25px 0;
+    padding: 20px;
+    background: #f3faf5;
+    border-radius: 12px;
+}
+
+.confidence-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    color: #365442;
+    font-weight: 600;
+}
+
+.confidence-header strong {
+    color: #159b50;
+    font-size: 18px;
+}
+
+.confidence-track {
+    width: 100%;
+    height: 10px;
+    background: #dcebe0;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.confidence-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #159b50, #65cf88);
+    border-radius: 20px;
+    transition: width .7s ease;
+}
+
+.result-information {
+    margin-top: 22px;
+    padding: 20px;
+    background: #f8fbf9;
+    border: 1px solid #e5eee7;
+    border-radius: 12px;
+}
+
+.result-information h3 {
+    color: #176b3b;
+    margin-bottom: 10px;
+    font-size: 17px;
+}
+
+.result-information p {
+    margin: 0;
+}
+
+.result-tip {
+    margin-top: 20px;
+    padding: 20px;
+    background: #effaf3;
+    border-left: 4px solid #159b50;
+    border-radius: 10px;
+    color: #176b3b;
+    line-height: 1.7;
+}
+
+@media(max-width: 600px) {
+    .result-box {
+        padding: 20px 16px;
+    }
+
+    .result-category {
+        font-size: 21px;
+    }
+
+    .result-information {
+        padding: 16px;
+    }
+}
+
+        .scanner-note {
+            font-size: 12px;
+            color: #89958d;
+            margin-top: 18px;
+        }
+
+        @media(max-width:600px) {
+            .scanner-container h1 {
+                font-size: 32px;
+            }
+
+            .upload-box {
+                padding: 35px 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="site-header">
+    <a class="brand" href="index.html">
+        <span class="brand-mark">♻</span>
+        <span>EcoSort <b>AI</b></span>
+    </a>
+
+    <button class="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
+
+    <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="ecology.html">Ecology</a>
+        <a href="services.html">Services</a>
+        <a href="news.html">News</a>
+        <a href="about.html">About Us</a>
+        <a href="login.html">Login</a>
+    </nav>
+
+    <a class="header-link" href="scanner.html">AI Scanner ↗</a>
+</header>
+
+<main>
+    <section class="scanner-section">
+
+        <div class="scanner-container">
+
+            <div class="eyebrow">
+                <span class="eyebrow-dot"></span>
+                SMART WASTE RECOGNITION
+            </div>
+
+            <h1>AI Waste Scanner</h1>
+
+            <p>
+                Upload a picture of your waste and discover
+                how to sort it correctly.
+            </p>
+
+            <label class="upload-box" for="imageInput">
+
+                <div class="upload-icon">📸</div>
+
+                <h2>Upload your image</h2>
+
+                <p>Click here to select an image from your device</p>
+
+                <p>Supported formats: JPG, PNG, WEBP</p>
+
+            </label>
+
+            <input
+                type="file"
+                id="imageInput"
+                accept="image/png,image/jpeg,image/webp"
+            >
+
+            <img id="preview" class="preview" alt="Uploaded waste preview">
+
+            <br>
+
+            <button id="analyzeButton" class="scanner-button" disabled>
+                ♻ Analyze Waste
+            </button>
+
+            <div id="resultBox" class="result-box">
+
+    <h2>🌿 Analysis Result</h2>
+
+    <div class="result-category" id="category"></div>
+
+    <div class="confidence-section">
+        <div class="confidence-header">
+            <span>AI Confidence</span>
+            <strong id="confidenceValue">0%</strong>
+        </div>
+        <div class="confidence-track">
+            <div id="confidenceBar" class="confidence-fill"></div>
+        </div>
+    </div>
+
+    <div class="result-information">
+        <h3>📋 About This Material</h3>
+        <p id="description"></p>
+    </div>
+
+    <div class="result-information">
+        <h3>♻️ Sorting Instructions</h3>
+        <p id="sortingInstructions"></p>
+    </div>
+
+    <div class="result-tip">
+        <strong>💡 Recycling Tip:</strong>
+        <span id="tip"></span>
+    </div>
+
+</div>
+
+            <p class="scanner-note">
+                EcoSort AI helps make recycling easier for everyone.
+            </p>
+
+        </div>
+
+    </section>
+</main>
+
+<footer class="site-footer">
+    <a class="brand footer-brand" href="index.html">
+        <span class="brand-mark">♻</span>
+        <span>EcoSort <b>AI</b></span>
+    </a>
+
+    <p>Making waste sorting simpler, one scan at a time.</p>
+
+    <small>© <span id="year"></span> EcoSort AI.</small>
+</footer>
+
+<script src="script.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+
+<script src="scanner.js"></script>
+</body>
+</html>
