@@ -341,7 +341,13 @@
     <a href="login.html">Login</a>
     <a href="profile.html">My Profile</a>
   </nav>
-
+<div class="language-switcher">
+  <select id="languageSelect" aria-label="Choose language">
+    <option value="kk">🇰🇿 KZ</option>
+    <option value="ru">🇷🇺 RU</option>
+    <option value="en">🇬🇧 EN</option>
+  </select>
+</div>
   <a class="header-link" href="scanner.html">Try scanner <span>↗</span></a>
 </header>
 
@@ -517,43 +523,99 @@
 </div>
 
 <script>
-  const articles = [
-    {
-      category: "ECOLOGY",
-      title: "Small Actions, Big Impact: Building a Sustainable Future",
-      text: "A sustainable future begins with everyday decisions. Choosing reusable products, reducing unnecessary packaging, sorting waste and using resources responsibly are simple ways to support the environment. Individual actions become more meaningful when communities work together. EcoSort AI encourages everyone to make recycling easier and more accessible."
+ const articles = [
+  {
+    category: { kk: "ЭКОЛОГИЯ", ru: "ЭКОЛОГИЯ", en: "ECOLOGY" },
+    title: {
+      kk: "Кішкентай қадамдар — үлкен нәтиже: тұрақты болашақ",
+      ru: "Маленькие действия — большие перемены: устойчивое будущее",
+      en: "Small Actions, Big Impact: Building a Sustainable Future"
     },
-    {
-      category: "RECYCLING",
-      title: "Why Waste Sorting Matters",
-      text: "Waste sorting helps separate materials that may be suitable for recycling. Paper, glass, metal, plastic and organic waste often require different collection methods. Correct sorting can improve the quality of recyclable materials and reduce the amount of waste sent to landfills. Always check the rules of your local recycling service."
-    },
-    {
-      category: "ECOLOGY",
-      title: "Protecting Urban Green Spaces",
-      text: "Parks, gardens and trees are valuable parts of urban environments. They provide habitats for wildlife, offer shade and create places for people to relax. Communities can help protect green spaces by avoiding littering, caring for plants and supporting local environmental initiatives."
-    },
-    {
-      category: "TECHNOLOGY",
-      title: "How AI Can Help Recycling",
-      text: "Artificial intelligence can support waste identification by analyzing images and recognizing material patterns. AI-powered tools can help users understand whether an item may belong to plastic, paper, glass, metal or organic categories. EcoSort AI demonstrates how technology can make waste sorting more accessible. Its predictions should still be checked against local recycling rules."
-    },
-    {
-      category: "ECO LIFESTYLE",
-      title: "5 Simple Ways to Reduce Waste",
-      text: "You can reduce everyday waste by carrying a reusable shopping bag, using a refillable water bottle, choosing products with less packaging, repairing items when possible and sorting recyclable materials. Small practical habits can help reduce unnecessary waste over time."
-    },
-    {
-      category: "RECYCLING",
-      title: "Understanding Plastic Recycling",
-      text: "Plastic products are made from different materials, and not every type is accepted by every recycling program. Check packaging labels and local collection guidelines before placing plastic items in recycling bins. Empty and clean containers when required by your local service."
-    },
-    {
-      category: "ECOLOGY",
-      title: "Why Saving Water Matters",
-      text: "Fresh water is an important natural resource. Turning off taps when they are not needed, fixing leaks and using water carefully in daily activities can help avoid waste. Responsible water use is one way households can support environmental sustainability."
+    text: {
+      kk: "Тұрақты болашақ күнделікті шешімдерден басталады. Қайта пайдаланылатын өнімдерді таңдау, артық қаптаманы азайту, қалдықтарды сұрыптау және ресурстарды үнемді пайдалану — қоршаған ортаны қорғаудың қарапайым жолдары. Адамдардың жеке әрекеттері қоғам болып бірігіп әрекет еткенде үлкен нәтижеге жеткізеді. EcoSort AI қайта өңдеуді жеңіл әрі қолжетімді етуге көмектеседі.",
+      ru: "Устойчивое будущее начинается с повседневных решений. Использование многоразовых товаров, сокращение лишней упаковки, сортировка отходов и бережное отношение к ресурсам помогают защитить окружающую среду. Личные действия становятся эффективнее, когда люди объединяются. EcoSort AI помогает сделать переработку проще и доступнее.",
+      en: "A sustainable future begins with everyday decisions. Choosing reusable products, reducing unnecessary packaging, sorting waste and using resources responsibly are simple ways to support the environment. Individual actions become more meaningful when communities work together. EcoSort AI encourages everyone to make recycling easier and more accessible."
     }
-  ];
+  },
+  {
+    category: { kk: "ҚАЙТА ӨҢДЕУ", ru: "ПЕРЕРАБОТКА", en: "RECYCLING" },
+    title: {
+      kk: "Қалдықтарды сұрыптау неге маңызды?",
+      ru: "Почему важно сортировать отходы?",
+      en: "Why Waste Sorting Matters"
+    },
+    text: {
+      kk: "Қалдықтарды сұрыптау қайта өңдеуге жарамды материалдарды бөлуге көмектеседі. Қағаз, шыны, металл, пластик және органикалық қалдықтар әртүрлі жинау әдістерін қажет етеді. Дұрыс сұрыптау қайта өңделетін материалдардың сапасын жақсартып, полигондарға жіберілетін қалдық көлемін азайтады. Жергілікті қайта өңдеу ережелерін әрдайым тексеріңіз.",
+      ru: "Сортировка отходов помогает отделять материалы, пригодные для переработки. Бумага, стекло, металл, пластик и органические отходы часто требуют разных способов сбора. Правильная сортировка повышает качество вторичного сырья и уменьшает количество мусора на полигонах. Всегда проверяйте правила местной службы переработки.",
+      en: "Waste sorting helps separate materials that may be suitable for recycling. Paper, glass, metal, plastic and organic waste often require different collection methods. Correct sorting can improve the quality of recyclable materials and reduce the amount of waste sent to landfills. Always check the rules of your local recycling service."
+    }
+  },
+  {
+    category: { kk: "ЭКОЛОГИЯ", ru: "ЭКОЛОГИЯ", en: "ECOLOGY" },
+    title: {
+      kk: "Қалалық жасыл аймақтарды қорғау",
+      ru: "Защита городских зелёных зон",
+      en: "Protecting Urban Green Spaces"
+    },
+    text: {
+      kk: "Саябақтар, бақтар мен ағаштар қалалық ортаның маңызды бөлігі болып табылады. Олар жануарларға мекен береді, көлеңке жасайды және адамдардың демалуына мүмкіндік береді. Қоқыс тастамау, өсімдіктерге күтім жасау және жергілікті экологиялық бастамаларды қолдау арқылы жасыл аймақтарды қорғауға болады.",
+      ru: "Парки, сады и деревья — важная часть городской среды. Они служат местом обитания для животных, создают тень и предоставляют людям места для отдыха. Жители могут помогать сохранять зелёные зоны, не оставляя мусор, ухаживая за растениями и поддерживая местные экологические инициативы.",
+      en: "Parks, gardens and trees are valuable parts of urban environments. They provide habitats for wildlife, offer shade and create places for people to relax. Communities can help protect green spaces by avoiding littering, caring for plants and supporting local environmental initiatives."
+    }
+  },
+  {
+    category: { kk: "ТЕХНОЛОГИЯ", ru: "ТЕХНОЛОГИИ", en: "TECHNOLOGY" },
+    title: {
+      kk: "Жасанды интеллект қайта өңдеуге қалай көмектеседі?",
+      ru: "Как искусственный интеллект помогает переработке?",
+      en: "How AI Can Help Recycling"
+    },
+    text: {
+      kk: "Жасанды интеллект суреттерді талдау және материалдардың ерекшеліктерін анықтау арқылы қалдықтарды тануға көмектеседі. AI құралдары заттың пластик, қағаз, шыны, металл немесе органикалық қалдық екенін анықтауға мүмкіндік береді. EcoSort AI технологияның қалдықтарды сұрыптауды қалай жеңілдететінін көрсетеді. Дегенмен, нәтижелерді жергілікті сұрыптау ережелерімен салыстыру қажет.",
+      ru: "Искусственный интеллект может помогать распознавать отходы, анализируя изображения и определяя особенности материалов. Инструменты на основе ИИ помогают понять, относится ли предмет к пластику, бумаге, стеклу, металлу или органическим отходам. EcoSort AI показывает, как технологии могут упростить сортировку. Однако результаты следует проверять с учётом местных правил переработки.",
+      en: "Artificial intelligence can support waste identification by analyzing images and recognizing material patterns. AI-powered tools can help users understand whether an item may belong to plastic, paper, glass, metal or organic categories. EcoSort AI demonstrates how technology can make waste sorting more accessible. Its predictions should still be checked against local recycling rules."
+    }
+  },
+  {
+    category: { kk: "ЭКО ӨМІР САЛТЫ", ru: "ЭКОПРИВЫЧКИ", en: "ECO LIFESTYLE" },
+    title: {
+      kk: "Қалдықтарды азайтудың 5 қарапайым жолы",
+      ru: "5 простых способов сократить количество отходов",
+      en: "5 Simple Ways to Reduce Waste"
+    },
+    text: {
+      kk: "Күнделікті қалдықтарды азайту үшін көп рет қолданылатын сөмке алып жүруге, су құтысын пайдалануға, қаптамасы аз өнімдерді таңдауға, заттарды мүмкіндігінше жөндеуге және қайта өңделетін материалдарды сұрыптауға болады. Осындай қарапайым әдеттер уақыт өте келе артық қалдықтарды азайтуға көмектеседі.",
+      ru: "Чтобы сократить количество бытовых отходов, можно носить многоразовую сумку, использовать многоразовую бутылку для воды, выбирать товары с минимальной упаковкой, по возможности ремонтировать вещи и сортировать материалы для переработки. Простые привычки помогают постепенно уменьшать количество ненужного мусора.",
+      en: "You can reduce everyday waste by carrying a reusable shopping bag, using a refillable water bottle, choosing products with less packaging, repairing items when possible and sorting recyclable materials. Small practical habits can help reduce unnecessary waste over time."
+    }
+  },
+  {
+    category: { kk: "ҚАЙТА ӨҢДЕУ", ru: "ПЕРЕРАБОТКА", en: "RECYCLING" },
+    title: {
+      kk: "Пластикті қайта өңдеу туралы",
+      ru: "Что нужно знать о переработке пластика",
+      en: "Understanding Plastic Recycling"
+    },
+    text: {
+      kk: "Пластик өнімдері әртүрлі материалдардан жасалады және олардың барлығы бірдей қайта өңдеу бағдарламасына қабылданбайды. Пластик заттарды арнайы контейнерге салмас бұрын қаптамадағы белгілер мен жергілікті жинау ережелерін тексеріңіз. Жергілікті қызмет талап етсе, контейнерлерді босатып, тазалаңыз.",
+      ru: "Пластиковые изделия производятся из разных материалов, и не все их виды принимаются программами переработки. Перед тем как выбрасывать пластик в контейнер для вторсырья, проверяйте маркировку упаковки и местные правила сбора. Если этого требуют местные правила, опустошите и очистите контейнеры.",
+      en: "Plastic products are made from different materials, and not every type is accepted by every recycling program. Check packaging labels and local collection guidelines before placing plastic items in recycling bins. Empty and clean containers when required by your local service."
+    }
+  },
+  {
+    category: { kk: "ЭКОЛОГИЯ", ru: "ЭКОЛОГИЯ", en: "ECOLOGY" },
+    title: {
+      kk: "Суды үнемдеу неге маңызды?",
+      ru: "Почему важно экономить воду?",
+      en: "Why Saving Water Matters"
+    },
+    text: {
+      kk: "Тұщы су — маңызды табиғи ресурс. Қажет болмаған кезде суды өшіру, ағып тұрған құбырларды жөндеу және күнделікті тұрмыста суды үнемді пайдалану оның ысырап болуын азайтады. Суды жауапкершілікпен пайдалану — қоршаған ортаның тұрақтылығын қолдаудың бір жолы.",
+      ru: "Пресная вода — важный природный ресурс. Выключение воды, когда она не нужна, устранение протечек и бережное использование воды в повседневной жизни помогают избежать её потерь. Ответственное потребление воды — один из способов поддержать экологическую устойчивость.",
+      en: "Fresh water is an important natural resource. Turning off taps when they are not needed, fixing leaks and using water carefully in daily activities can help avoid waste. Responsible water use is one way households can support environmental sustainability."
+    }
+  }
+];
 
   const searchInput = document.getElementById("newsSearch");
   const chips = document.querySelectorAll(".news-chip");
@@ -605,9 +667,11 @@
     button.addEventListener("click", () => {
       const article = articles[Number(button.dataset.article)];
 
-      modalTitle.textContent = article.title;
-      modalText.textContent = article.text;
-      modalCategory.textContent = article.category;
+     const lang = localStorage.getItem("ecosort-language") || "en";
+
+modalTitle.textContent = article.title[lang];
+modalText.textContent = article.text[lang];
+modalCategory.textContent = article.category[lang];
 
       modal.classList.add("open");
       document.body.style.overflow = "hidden";

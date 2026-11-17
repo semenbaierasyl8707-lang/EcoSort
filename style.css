@@ -448,56 +448,34 @@
         font-size: 25px;
     }
 }
-/* HOME HERO — MOBILE IMAGE FIX */
-
-@media (max-width: 768px) {
-    .home-page .hero {
-        display: flex;
-        flex-direction: column;
-        gap: 35px;
-        padding: 55px 20px 40px;
-    }
-
-    .home-page .hero-copy {
-        width: 100%;
-    }
-
-    .home-page .eco-visual {
-        width: 100%;
-        max-width: 480px;
-        margin: 0 auto;
-        min-width: 0;
-    }
-
-    .home-page .eco-main-card {
-        width: 100%;
-        max-width: 100%;
-        margin: 0 auto;
-    }
-
-    .home-page .eco-main-card img {
-        display: block;
-        width: 100%;
-        height: auto;
-        object-fit: contain;
-    }
+/* Language Switcher */
+.language-switcher {
+  display: flex;
+  align-items: center;
+  margin-left: 15px;
 }
 
-@media (max-width: 480px) {
-    .home-page .hero {
-        padding: 40px 16px 30px;
-    }
+.language-switcher select {
+  padding: 10px 14px;
+  border: 1px solid #dce9df;
+  border-radius: 10px;
+  background: #f4faf5;
+  color: #176b3b;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  outline: none;
+  transition: 0.3s ease;
+}
 
-    .home-page .eco-visual {
-        max-width: 100%;
-    }
+.language-switcher select:hover {
+  background: #e5f4e9;
+  border-color: #176b3b;
+}
 
-    .home-page .eco-center-label {
-        transform: scale(0.85);
-        transform-origin: bottom left;
-    }
-
-    .home-page .eco-ai-badge {
-        font-size: 10px;
-    }
+@media (max-width: 900px) {
+  .language-switcher {
+    margin: 12px 0;
+  }
 }
